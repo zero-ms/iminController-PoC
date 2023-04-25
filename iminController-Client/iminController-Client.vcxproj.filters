@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Main.cc" />
+    <ClCompile Include="Util\Aes.cc">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Communication\MainHandler.cc">
+      <Filter>Communication</Filter>
+    </ClCompile>
+    <ClCompile Include="Plugin\PluginHandler.cc">
+      <Filter>Plugin</Filter>
+    </ClCompile>
+    <ClCompile Include="Communication\Packet.cc">
+      <Filter>Communication</Filter>
+    </ClCompile>
+    <ClCompile Include="Util\Variable.cc">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Libraries\syscall.cpp">
+      <Filter>Libraries</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Main.h" />
+    <ClInclude Include="Util\Aes.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Communication\MainHandler.h">
+      <Filter>Communication</Filter>
+    </ClInclude>
+    <ClInclude Include="Util\Variable.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Plugin\PluginHandler.h">
+      <Filter>Plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="Communication\Packet.h">
+      <Filter>Communication</Filter>
+    </ClInclude>
+    <ClInclude Include="Util\HWIDGen.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\native.hpp">
+      <Filter>Libraries</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\syscall.hpp">
+      <Filter>Libraries</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\ntdll.h">
+      <Filter>Libraries</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Communication">
+      <UniqueIdentifier>{c1e6adfb-5986-49c4-9aa7-b7d84c3b5cb4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Util">
+      <UniqueIdentifier>{960a6ec4-daf5-4c88-acb7-f09b15bfcc33}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Plugin">
+      <UniqueIdentifier>{35b63992-e337-48fd-b476-2979ad0c6f18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libraries">
+      <UniqueIdentifier>{84e416e2-ec8c-4243-98b5-c9fbfab948f3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

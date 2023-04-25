@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Main.cc" />
+    <ClCompile Include="Util\Aes.cc">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Communication\MainHandler.cc">
+      <Filter>Communication</Filter>
+    </ClCompile>
+    <ClCompile Include="Task\Task.cpp">
+      <Filter>Task</Filter>
+    </ClCompile>
+    <ClCompile Include="Bots\Bot.cc">
+      <Filter>Bots</Filter>
+    </ClCompile>
+    <ClCompile Include="Communication\Packet.cc">
+      <Filter>Communication</Filter>
+    </ClCompile>
+    <ClCompile Include="CUIHandler\CommandHandler.cc">
+      <Filter>CUIHandler</Filter>
+    </ClCompile>
+    <ClCompile Include="CUIHandler\ConsolePrinter.cc">
+      <Filter>CUIHandler</Filter>
+    </ClCompile>
+    <ClCompile Include="Util\Variable.cc">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Bots\BotHandler.cc">
+      <Filter>Bots</Filter>
+    </ClCompile>
+    <ClCompile Include="Task\TaskHandler.cpp">
+      <Filter>Task</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Communication">
+      <UniqueIdentifier>{73a43447-d263-49a6-bfaa-23338257b513}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Bots">
+      <UniqueIdentifier>{6f1b6327-93d1-413d-93db-7b0c68ef8197}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Util">
+      <UniqueIdentifier>{3394cec0-b9c3-41be-a696-54664880f6c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libraries">
+      <UniqueIdentifier>{33799089-39bf-4549-9b9c-166381bdf723}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Task">
+      <UniqueIdentifier>{ac084b3b-58a4-4147-93fe-8879b1d5e04c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CUIHandler">
+      <UniqueIdentifier>{c3a28759-852b-400f-bd93-d8455b5eb702}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Util\Aes.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Main.h" />
+    <ClInclude Include="Communication\MainHandler.h">
+      <Filter>Communication</Filter>
+    </ClInclude>
+    <ClInclude Include="Task\Task.h">
+      <Filter>Task</Filter>
+    </ClInclude>
+    <ClInclude Include="Bots\Bot.h">
+      <Filter>Bots</Filter>
+    </ClInclude>
+    <ClInclude Include="Communication\Packet.h">
+      <Filter>Communication</Filter>
+    </ClInclude>
+    <ClInclude Include="Util\Variable.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="CUIHandler\CommandHandler.h">
+      <Filter>CUIHandler</Filter>
+    </ClInclude>
+    <ClInclude Include="CUIHandler\ConsolePrinter.h">
+      <Filter>CUIHandler</Filter>
+    </ClInclude>
+    <ClInclude Include="Bots\BotHandler.h">
+      <Filter>Bots</Filter>
+    </ClInclude>
+    <ClInclude Include="Task\TaskHandler.h">
+      <Filter>Task</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
