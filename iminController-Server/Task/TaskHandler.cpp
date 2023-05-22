@@ -1,10 +1,9 @@
 #include "TaskHandler.h"
 
-TaskHandler::TaskMap TaskHandler::TaskPool;
-int TaskHandler::Order = 1;
+TaskHandler *TaskHandler::Instance = nullptr;
 
 void TaskHandler::registerTaskToAllBots(Task *task) {
-  BotHandler::addTaskToAllBots(task);
+  BotHandler::getInstance()->addTaskToAllBots(task);
 }
 
 uint64_t TaskHandler::getCurrentTimeMillis() {
@@ -14,9 +13,11 @@ uint64_t TaskHandler::getCurrentTimeMillis() {
 }
 
 void TaskHandler::startTaskThread() {
-  std::thread TaskThread(taskThread);
+  std::thread TaskThread(&TaskHandler::taskThread, this);
   TaskThread.detach();
 }
+
+int TaskHandler::getSize() { return TaskPool.size(); }
 
 void TaskHandler::taskThread() {
   while (true) {
@@ -34,11 +35,19 @@ void TaskHandler::taskThread() {
   }
 }
 
+TaskHandler *TaskHandler::getInstance() {
+  if (Instance == NULL) {
+    Instance = new TaskHandler();
+  }
+
+  return Instance;
+}
+
 void TaskHandler::addTask(Task *task) {
   task->setLastExecuteMillis(getCurrentTimeMillis() +
                              task->getTaskPeriodAsMinute() * 60000);
   TaskPool.insert(TaskPair(Order, task));
-  printf("Order: %d\n", Order);
+  printf("New Task Order: %d\n", Order);
   Order += 1;
   registerTaskToAllBots(task);
 }

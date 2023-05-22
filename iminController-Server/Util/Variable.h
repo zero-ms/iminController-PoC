@@ -2,18 +2,21 @@
 
 #include <Windows.h>
 
+
 class Variable {
 private:
-  static char *ServerAddress;
-  static const int Port = 5235;
-  static char NewClientSignature[4];
-  static char PingSignature[4];
-  static char SuccessSignature[4];
-  static char FailSignature[4];
-  static char LoadPluginSignature[4];
-  static char SplitterSignature[7];
+  const int Port = 5235;
+  char NewClientSignature[4] = {'\x01', '\x02', '\x03', '\x04'};
+  char PingSignature[4] = {'\x04', '\x09', '\x07', '\x06'};
+  char SuccessSignature[4] = {'\x01', '\x01', '\x05', '\x06'};
+  char FailSignature[4] = {'\x04', '\x06', '\x07', '\x08'};
+  char LoadPluginSignature[4] = {'\x08', '\x01', '\x03', '\x05'};
+  char SplitterSignature[7] = "NMH523";
 
-  static bool compareByte(char *Payload, const char *StandardPayload) {
+  Variable();
+  static Variable *Instance;
+
+  bool compareByte(char *Payload, const char *StandardPayload) {
     for (int i = 0; i < 4; i++) {
       if (Payload[i] != StandardPayload[i]) {
         return false;
@@ -47,15 +50,17 @@ public:
       NONE,
   };
 
-  static bool compareSignature(Variable::Signature sig, char *Payload);
+  static Variable *getInstance();
 
-  static Variable::Signature findSignature(char *Payload);
+  bool compareSignature(Variable::Signature sig, char *Payload);
 
-  static void allocateSignature(Variable::Signature sig, char *Payload);
+  Variable::Signature findSignature(char *Payload);
 
-  static char *getServerAddress();
+  void allocateSignature(Variable::Signature sig, char *Payload);
 
-  static int getPort();
+  char *getServerAddress();
 
-  static char *getSplitter();
+  int getPort();
+
+  char *getSplitter();
 };

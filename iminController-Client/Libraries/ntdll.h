@@ -1173,7 +1173,7 @@ typedef struct _PS_ATTRIBUTE {
   SIZE_T Size;         // Size of Value or *ValuePtr
   union {
     ULONG_PTR
-        Value; // Reserve 8 bytes for data (such as a Handle or a data pointer)
+    Value; // Reserve 8 bytes for data (such as a Handle or a data pointer)
     PVOID ValuePtr; // data pointer
   };
   PSIZE_T ReturnLength; // Either 0 or specifies size of data returned to caller
@@ -2003,9 +2003,9 @@ typedef struct _KEY_VIRTUALIZATION_INFORMATION {
                                      // virtualization namespace scope (only
                                      // HKLM\Software for now).
   ULONG
-      VirtualizationEnabled : 1; // Tells whether virtualization is enabled on
-                                 // this key. Can be 1 only if above flag is 1.
-  ULONG VirtualTarget : 1; // Tells if the key is a virtual key. Can be 1 only
+  VirtualizationEnabled : 1; // Tells whether virtualization is enabled on
+                             // this key. Can be 1 only if above flag is 1.
+  ULONG VirtualTarget : 1;   // Tells if the key is a virtual key. Can be 1 only
                            // if above 2 are 0. Valid only on the virtual store
                            // key handles.
   ULONG VirtualStore : 1;  // Tells if the key is a part of the virtual store
@@ -6332,6 +6332,8 @@ RtlUpcaseUnicodeString(_Out_ PUNICODE_STRING DestinationString,
 NTSYSAPI
 VOID NTAPI RtlInitUnicodeString(_Out_ PUNICODE_STRING DestinationString,
                                 _In_opt_ PWSTR SourceString);
+NTSYSAPI
+VOID NTAPI RtlFreeUnicodeString(_Inout_ PUNICODE_STRING UnicodeString);
 
 NTSYSAPI
 VOID NTAPI RtlInitAnsiString(_Out_ PANSI_STRING DestinationString,

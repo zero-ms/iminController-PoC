@@ -1,7 +1,10 @@
 #include "MainHandler.h"
 
+MainHandler *MainHandler::Instance = nullptr;
+
 bool MainHandler::isNewClientSignature(char *Payload) {
-  return Variable::compareSignature(Variable::Signature::NEW_CLIENT, Payload);
+  return Variable::getInstance()->compareSignature(
+      Variable::Signature::NEW_CLIENT, Payload);
 }
 
 void MainHandler::decideConnectType(SOCKET ClientHandle,
@@ -13,9 +16,8 @@ void MainHandler::decideConnectType(SOCKET ClientHandle,
       std::vector<std::string> Params = InitPacket->parseParams();
       Bot *NewBot =
           new Bot(ClientHandle, inet_ntoa(ClientAddr.sin_addr), Params.at(1));
-      BotHandler::addBot(NewBot);
+      BotHandler::getInstance()->addBot(NewBot);
       NewBot->startLooping();
-      delete InitPacket;
       break;
     }
     case Variable::Signature::LOAD_PLUGIN: {
@@ -23,18 +25,20 @@ void MainHandler::decideConnectType(SOCKET ClientHandle,
     }
     }
   }
+
+  delete InitPacket;
 }
 
 void MainHandler::acceptConnect(SOCKET ListenHandle) {
   SOCKADDR_IN ClientAddr = {};
   int ClientAddrSize = sizeof(ClientAddr);
   while (true) {
-    SOCKET ClientHandle = INVALID_SOCKET;
+    SOCKET ClientHandle = NULL;
     ClientHandle =
         accept(ListenHandle, (SOCKADDR *)&ClientAddr, &ClientAddrSize);
-    if (ClientHandle != INVALID_SOCKET) {
+    if (ClientHandle != NULL) {
       decideConnectType(ClientHandle, ClientAddr);
-    } else if (ClientHandle == INVALID_SOCKET) {
+    } else if (ClientHandle == NULL) {
       continue;
     } else {
       continue;
@@ -42,8 +46,16 @@ void MainHandler::acceptConnect(SOCKET ListenHandle) {
   }
 }
 
+MainHandler *MainHandler::getInstance() {
+  if (Instance == NULL) {
+    Instance = new MainHandler();
+  }
+
+  return Instance;
+}
+
 void MainHandler::startListenThread() {
-  std::thread ListenThread(&startListen);
+  std::thread ListenThread(&MainHandler::startListen, this);
   ListenThread.detach();
 }
 
@@ -56,7 +68,7 @@ void MainHandler::startListen() {
 
   SOCKADDR_IN ListenAddr = {};
   ListenAddr.sin_family = AF_INET;
-  ListenAddr.sin_port = htons(Variable::getPort());
+  ListenAddr.sin_port = htons(Variable::getInstance()->getPort());
   ListenAddr.sin_addr.s_addr = htonl(INADDR_ANY);
 
   bind(ListenHandle, (SOCKADDR *)&ListenAddr, sizeof(ListenAddr));

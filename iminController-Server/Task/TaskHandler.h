@@ -1,8 +1,8 @@
 #pragma once
 
+#include <chrono>
 #include <iostream>
 #include <map>
-#include <chrono>
 
 #include "../Bots/BotHandler.h"
 
@@ -11,18 +11,25 @@ private:
   typedef std::map<int, class Task *> TaskMap;
   typedef TaskMap::iterator TaskMapIter;
   typedef std::pair<int, class Task *> TaskPair;
-  static TaskMap TaskPool;
-  static int Order;
 
-  static uint64_t getCurrentTimeMillis();
-  static void registerTaskToAllBots(Task *task);
-  static void taskThread();
+  TaskMap TaskPool;
+  int Order = 1;
+
+  uint64_t getCurrentTimeMillis();
+  void registerTaskToAllBots(Task *task);
+  void taskThread();
+
+  static TaskHandler *Instance;
 
 public:
-  static void addTask(Task *task);
-  static void removeTask(int Number);
-  static TaskMapIter getTaskPoolIteratorBegin();
-  static TaskMapIter getTaskPoolIteratorEnd();
+  static TaskHandler *getInstance();
 
-  static void startTaskThread();
+  void addTask(Task *task);
+  void removeTask(int Number);
+  TaskMapIter getTaskPoolIteratorBegin();
+  TaskMapIter getTaskPoolIteratorEnd();
+
+  void startTaskThread();
+
+  int getSize();
 };

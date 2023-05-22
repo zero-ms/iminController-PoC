@@ -13,17 +13,21 @@ private:
   typedef BotMap::iterator BotMapIter;
   typedef std::pair<std::string, class Bot *> BotMapPair;
 
-  static BotMap BotList;
+  BotMap BotList;
+
+  static BotHandler *Instance;
 
 public:
-  static void addBot(class Bot *bot);
-  static void removeBot(std::string *HWID);
-  static Bot *getBot(std::string *HWID);
+  static BotHandler *getInstance();
 
-  static void addTaskToAllBots(class Task *task);
+  void addBot(class Bot *bot);
+  void removeBot(std::string *HWID);
+  Bot *getBot(std::string *HWID);
 
-  static int getBotCount();
+  void addTaskToAllBots(class Task *task);
 
-  static BotHandler::BotMapIter getBotListIteratorBegin();
-  static BotHandler::BotMapIter getBotListIteratorEnd();
+  int getBotCount();
+
+  BotHandler::BotMapIter getBotListIteratorBegin();
+  BotHandler::BotMapIter getBotListIteratorEnd();
 };

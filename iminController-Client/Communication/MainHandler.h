@@ -3,7 +3,6 @@
 
 #include <WinSock2.h>
 #include <Windows.h>
-#include <stdio.h>
 
 #include "../Util/Variable.h"
 #include "../Communication/Packet.h"

@@ -1,9 +1,12 @@
 ﻿#include "Main.h"
 
-int main() {
+int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
+                     LPSTR lpszCmdParam, int nCmdShow) {
   if (isDuplicateRunning()) {
     return -1;
   }
+
+  LoadLibraryW(xorstr_(L"wininet.dll"));
 
   MainHandler::startHandler();
 }

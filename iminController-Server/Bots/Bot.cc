@@ -1,7 +1,7 @@
 #include "Bot.h"
 
 bool Bot::isSuccessResponse(char *Payload) {
-  return Variable::compareSignature(Variable::Signature::RESPONSE_SUCCESS,
+  return Variable::getInstance()->compareSignature(Variable::Signature::RESPONSE_SUCCESS,
                                     Payload);
 }
 
@@ -41,9 +41,11 @@ void Bot::loopingThread() {
       }
 
       Sleep(5000);
+    } else {
+      delete RequestPacket;
     }
   }
-  BotHandler::removeBot(&this->HWID);
+  BotHandler::getInstance()->removeBot(&this->HWID);
 }
 
 void Bot::startLooping() {

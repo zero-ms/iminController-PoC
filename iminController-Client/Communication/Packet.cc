@@ -62,6 +62,8 @@ bool Packet::sendPacket() {
     } else {
       return false;
     }
+  } else {
+    return false;
   }
 }
 
@@ -71,7 +73,7 @@ void Packet::setPacketType(Variable::PacketType Type) { this->Type = Type; }
 
 Variable::Signature Packet::parseSignatureFromPayload() {
   if (isPacketReady()) {
-    this->Sig = Variable::findSignature(this->Payload);
+    this->Sig = Variable::getInstance()->findSignature(this->Payload);
     return this->Sig;
   } else {
     return Variable::Signature::NONE;
@@ -84,7 +86,7 @@ void Packet::setSignature(Variable::Signature sig) {
   this->PayloadSize = PACKET_SIZE;
   this->Sig = sig;
   memset(Payload, 0, 1024);
-  Variable::allocateSignature(sig, this->Payload);
+  Variable::getInstance()->allocateSignature(sig, this->Payload);
 }
 
 char *Packet::getPayload() { return this->Payload; }
@@ -105,9 +107,10 @@ void Packet::addParam(std::vector<char *> Params) {
   if (isPacketReady() && this->Sig != Variable::Signature::NONE) {
     int ArrayIndex = 4;
     for (char *element : Params) {
-      memcpy(&(this->Payload[ArrayIndex]), Variable::getSplitter(),
-             strlen(Variable::getSplitter()));
-      ArrayIndex += strlen(Variable::getSplitter());
+      memcpy(&(this->Payload[ArrayIndex]),
+             Variable::getInstance()->getSplitter(),
+             strlen(Variable::getInstance()->getSplitter()));
+      ArrayIndex += strlen(Variable::getInstance()->getSplitter());
       memcpy(&(this->Payload[ArrayIndex]), element, strlen(element));
       ArrayIndex += strlen(element);
     }
@@ -117,7 +120,7 @@ void Packet::addParam(std::vector<char *> Params) {
 void Packet::parseBySplitter(std::string *RawPayload,
                              std::vector<std::string> *Params) {
   size_t pos = 0;
-  std::string delimiter(Variable::getSplitter());
+  std::string delimiter(Variable::getInstance()->getSplitter());
   std::string token;
   while ((pos = RawPayload->find(delimiter)) != std::string::npos) {
     token = RawPayload->substr(0, pos);

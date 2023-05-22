@@ -17,8 +17,8 @@
     <ClCompile Include="Util\Variable.cc">
       <Filter>Util</Filter>
     </ClCompile>
-    <ClCompile Include="Libraries\syscall.cpp">
-      <Filter>Libraries</Filter>
+    <ClCompile Include="Libraries\FreshyCall\syscall.cpp">
+      <Filter>Libraries\FreshyCall</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -41,14 +41,20 @@
     <ClInclude Include="Util\HWIDGen.h">
       <Filter>Util</Filter>
     </ClInclude>
-    <ClInclude Include="Libraries\native.hpp">
-      <Filter>Libraries</Filter>
-    </ClInclude>
-    <ClInclude Include="Libraries\syscall.hpp">
-      <Filter>Libraries</Filter>
-    </ClInclude>
     <ClInclude Include="Libraries\ntdll.h">
       <Filter>Libraries</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\FreshyCall\syscall.hpp">
+      <Filter>Libraries\FreshyCall</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\FreshyCall\native.hpp">
+      <Filter>Libraries\FreshyCall</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\xorstr\xorstr.hpp">
+      <Filter>Libraries\xorstr</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\LazyImporter\lazy_importer.hpp">
+      <Filter>Libraries\LazyImporter</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -63,6 +69,15 @@
     </Filter>
     <Filter Include="Libraries">
       <UniqueIdentifier>{84e416e2-ec8c-4243-98b5-c9fbfab948f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libraries\FreshyCall">
+      <UniqueIdentifier>{72f72d3f-ea41-4a66-bb60-9ab7aacdf2fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libraries\xorstr">
+      <UniqueIdentifier>{74d4e7d0-eb5b-4a89-8a8b-c7f2fe65895d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libraries\LazyImporter">
+      <UniqueIdentifier>{9795e7e3-b165-4b73-b534-f3adbe88a1ea}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

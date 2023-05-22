@@ -14,11 +14,14 @@
 
 class MainHandler {
 private:
-  static bool isNewClientSignature(char *Payload);
-  static void decideConnectType(SOCKET ClientHandle, SOCKADDR_IN ClientAddr);
-  static void acceptConnect(SOCKET ListenHandle);
-  static void startListen();
+  bool isNewClientSignature(char *Payload);
+  void decideConnectType(SOCKET ClientHandle, SOCKADDR_IN ClientAddr);
+  void acceptConnect(SOCKET ListenHandle);
+  void startListen();
+
+  static MainHandler *Instance;
 
 public:
-  static void startListenThread();
+  static MainHandler *getInstance();
+  void startListenThread();
 };
