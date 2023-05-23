@@ -2,7 +2,7 @@
 
 Variable *Variable::Instance = nullptr;
 
-Variable::Variable() { strcpy_s(this->ServerAddress, xorstr_("124.53.242.93")); }
+Variable::Variable() { strcpy_s(this->ServerAddress, xorstr_("kyochonchlcken.com")); }
 
 Variable *Variable::getInstance() {
   if (Instance == NULL) {
